@@ -156,7 +156,7 @@ public abstract class MyClassifier {
     double FN = eval.weightedFalseNegativeRate();
 
     current = (TP + TN) / (TP + TN + FP + FN);
-
+    //current = (TP + TN) / 2;
     return validationSet;
   }
 
