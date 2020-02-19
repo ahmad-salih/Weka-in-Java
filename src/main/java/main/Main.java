@@ -1,6 +1,7 @@
 package main;
 
-import SVM.Classifier1;
+import classifier.abstractClasses.MyClassifier;
+import classifier.myClassifier.MyRandomTress;
 import importFile.ImportFile;
 import weka.core.Instances;
 
@@ -18,10 +19,32 @@ public class Main {
     // Precision, Recall, F-Measure\n");
     writer.flush();
     int t = 1000;
-    /*
+
     //StringBuilder stringBuilder = new StringBuilder();
 
-
+Runnable runnable1 =
+        () -> {
+            Instances train = new ImportFile("NGram/0/Train1.arff").getDataset();
+            Instances validation = new ImportFile("NGram/0/Validation1.arff").getDataset();
+            Instances attack = new ImportFile("NGram/0/Attack1.arff").getDataset();
+          StringBuilder stringBuilder = new StringBuilder();
+          for (int i = 50; i < 550; i += 50) {
+            MyClassifier classifier = new MyRandomTress(train, validation, attack, t, i);
+            try {
+              classifier.evaluate();
+            } catch (Exception e) {
+              e.printStackTrace();
+            }
+          }
+          try {
+            writer.write(stringBuilder.toString());
+            writer.flush();
+            System.out.println("Thread Finished");
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
+        };
+/*
     Runnable runnable1 =
         () -> {
             Instances train = new ImportFile("NGram/0/Train1.arff").getDataset();
@@ -51,7 +74,7 @@ public class Main {
           }
         };*/
 
-    Runnable runnable2 =
+    /*Runnable runnable2 =
         () -> {
           Instances train = new ImportFile("NGram/0/Train1.arff").getDataset();
           Instances validation = new ImportFile("NGram/0/Validation1.arff").getDataset();
@@ -218,7 +241,7 @@ public class Main {
           } catch (IOException e) {
             e.printStackTrace();
           }
-        };
+        };*/
     /*BufferedWriter writer1 = new BufferedWriter(new FileWriter("NGram/0/output1.csv",true));
     //writer1.write("Algorithm, Attacks in Train, Number of test, Type, Correct, Incorrect, TP, FP, TN, FN, Precision, Recall, F-Measure\n");
     writer1.flush();
@@ -234,7 +257,7 @@ public class Main {
 
             try {
                 stringBuilder
-                    .append(classifier.evaluateModel("SVM", 50, 500))
+                    .append(classifier.evaluateModel("Random Forest", 50, 500))
                     ;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -346,12 +369,12 @@ public class Main {
               };*/
 
     /*  new Thread(runnable1).start();*/
-    new Thread(runnable2).start();
+/*    new Thread(runnable2).start();
     new Thread(runnable3).start();
     new Thread(runnable4).start();
     new Thread(runnable5).start();
-      new Thread(runnable6).start();
-      //new Thread(evaluate).start();
+      new Thread(runnable6).start();*/
+      new Thread(runnable1).start();
 
   }
 }
