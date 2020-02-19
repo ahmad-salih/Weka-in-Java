@@ -1,9 +1,9 @@
 package classifier.myClassifier;
 
 import classifier.abstractClasses.MyClassifier;
-import weka.classifiers.AbstractClassifier;
-import weka.classifiers.trees.DecisionStump;
 import weka.core.Instances;
+
+import java.io.IOException;
 
 public class MyDecisionStump extends MyClassifier {
 
@@ -12,14 +12,14 @@ public class MyDecisionStump extends MyClassifier {
       Instances validation,
       Instances attack,
       int trainNumbers,
-      int attacksInTrain) {
-    super(train, validation, attack, trainNumbers, attacksInTrain);
+      int attacksInTrain,
+      String output)
+      throws IOException {
+    super(train, validation, attack, trainNumbers, attacksInTrain, output);
   }
 
   @Override
   public void evaluate() throws Exception {
     getResultClassifier("weka.classifiers.trees.DecisionStump");
   }
-
-
 }
