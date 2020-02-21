@@ -47,7 +47,7 @@ public class Detection {
       loadModels.loadModels();
 
       for (double d = 0.1; d < 1.0; d += .1) {
-        loadModels.evaluateDataset(validation, d);
+        loadModels.evaluateDataset(train, validation, d);
 
 
         writer.write(c + ", " + d + ", " + loadModels.getResaults());

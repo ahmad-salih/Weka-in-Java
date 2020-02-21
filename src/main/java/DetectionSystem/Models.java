@@ -2,6 +2,7 @@ package DetectionSystem;
 
 import weka.classifiers.AbstractClassifier;
 import weka.classifiers.Evaluation;
+import weka.core.Instance;
 import weka.core.Instances;
 
 import java.util.TreeMap;
@@ -28,12 +29,12 @@ public class Models {
         allClassifiers.put(total++, abstractClassifier);
     }
 
-    public double[] evaluateDataset(Instances instances, double percent) throws Exception {
+    public double[] evaluateDataset(Instances train, Instances instances, double percent) throws Exception {
         TreeMap<Integer, double[]> predictions = new TreeMap<>();
 
         for (Integer i : allClassifiers.keySet()) {
             AbstractClassifier tempClassifier = allClassifiers.get(i);
-            Evaluation eval = new Evaluation(instances);
+            Evaluation eval = new Evaluation(train);
             double[] out = eval.evaluateModel(tempClassifier, instances);
             predictions.put(i, out);
         }
@@ -74,6 +75,22 @@ public class Models {
         }
 
         return finalPrediction;
+    }
+
+
+    public double evaluateDataset(Instances train, Instance instance, double percent) throws Exception {
+        double prediction = 0;
+
+        for (Integer i : allClassifiers.keySet()) {
+            AbstractClassifier tempClassifier = allClassifiers.get(i);
+            Evaluation eval = new Evaluation(train);
+            double out = eval.evaluateModelOnce(tempClassifier, instance);
+            prediction += out;
+        }
+
+            return (prediction>total*percent)?1.0:0.0;
+
+
     }
 
     public double accuracy(){

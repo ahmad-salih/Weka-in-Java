@@ -55,8 +55,8 @@ public class LoadModels {
     models.addModel(temp);
   }
 
-  public void evaluateDataset(Instances validation, double d) throws Exception {
-    models.evaluateDataset(validation, d);
+  public void evaluateDataset(Instances train, Instances validation, double d) throws Exception {
+    models.evaluateDataset(train, validation, d);
   }
 
   public String getResaults() {
