@@ -1,7 +1,6 @@
 package main;
 
 import DetectionSystem.LoadModels;
-import DetectionSystem.Models;
 import importFile.ImportFile;
 import weka.classifiers.AbstractClassifier;
 import weka.core.Instances;
@@ -49,8 +48,7 @@ public class Detection {
       for (double d = 0.1; d < 1.0; d += .1) {
         loadModels.evaluateDataset(train, validation, d);
 
-
-        writer.write(c + ", " + d + ", " + loadModels.getResaults());
+        writer.write(c + ", " + d + ", " + loadModels.getResults());
         writer.flush();
       }
     }

@@ -7,7 +7,6 @@ import java.io.File;
 
 public class LoadModels {
   String path;
-  String classifier;
   Models models;
 
   public LoadModels() {
@@ -20,15 +19,6 @@ public class LoadModels {
 
   public LoadModels setPath(String path) {
     this.path = path;
-    return this;
-  }
-
-  public String getClassifier() {
-    return classifier;
-  }
-
-  public LoadModels setClassifier(String classifier) {
-    this.classifier = classifier;
     return this;
   }
 
@@ -59,7 +49,7 @@ public class LoadModels {
     models.evaluateDataset(train, validation, d);
   }
 
-  public String getResaults() {
+  public String getResults() {
     StringBuilder stringBuilder = new StringBuilder();
     stringBuilder
         .append(models.TPRate())
