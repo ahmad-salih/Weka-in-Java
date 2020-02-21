@@ -78,7 +78,7 @@ public class Models {
     }
 
 
-    public double evaluateDataset(Instances train, Instance instance, double percent) throws Exception {
+    public double evaluateInstance(Instances train, Instance instance, double percent) throws Exception {
         double prediction = 0;
 
         for (Integer i : allClassifiers.keySet()) {

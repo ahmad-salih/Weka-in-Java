@@ -1,6 +1,7 @@
 package DetectionSystem;
 
 import weka.classifiers.AbstractClassifier;
+import weka.core.Instance;
 import weka.core.Instances;
 
 import java.io.File;
@@ -47,6 +48,10 @@ public class LoadModels {
 
   public void evaluateDataset(Instances train, Instances validation, double d) throws Exception {
     models.evaluateDataset(train, validation, d);
+  }
+
+  public double evaluateInstance(Instances train, Instance instance, double percent) throws Exception {
+    return models.evaluateInstance(train, instance, percent);
   }
 
   public String getResults() {
