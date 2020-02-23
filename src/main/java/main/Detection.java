@@ -38,7 +38,7 @@ public class Detection {
 
     validation.addAll(attack);
 
-    BufferedWriter writer = new BufferedWriter(new FileWriter(path + "out1.csv"));
+    BufferedWriter writer = new BufferedWriter(new FileWriter(path + "out11.csv"));
     writer.write("Algorithms, percent of models, TP, FN, TN, FP, Precision, Recall, F-Measure, Accuracy\n");
     writer.flush();
     for (String c : classifier) {

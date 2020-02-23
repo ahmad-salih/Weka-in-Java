@@ -114,11 +114,11 @@ public class Models {
     }
 
     public double precision (){
-        return TPRate()/(TPRate() + FPRate());
+        return TP/(TP + FP);
     }
 
     public double recall (){
-        return TPRate()/(TPRate() + FNRate());
+        return TP/(TP + FN);
     }
 
     public double fMeasure(){
