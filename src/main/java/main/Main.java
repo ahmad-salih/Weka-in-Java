@@ -22,7 +22,7 @@ public class Main {
           for (int i = 50; i < 550; i += 50) {
             MyClassifier classifier = null;
             try {
-              classifier = new MyRandomTress(train, validation, attack, t, i, "NGram/0/output.csv");
+              classifier = new MyRandomTress(train, validation, attack, t, i, "NGram/0/output333.csv");
               classifier.evaluate();
 
             } catch (Exception e) {
@@ -42,7 +42,7 @@ public class Main {
             MyClassifier classifier = null;
             try {
               classifier =
-                  new MyRandomForest(train, validation, attack, t, i, "NGram/0/output.csv");
+                  new MyRandomForest(train, validation, attack, t, i, "NGram/0/output333.csv");
               classifier.evaluate();
 
             } catch (Exception e) {
@@ -51,7 +51,7 @@ public class Main {
           }
           System.out.println("Thread Finished");
         };
-    new Thread(runnable1).start();
+    new Thread(runnable2).start();
 
     Runnable runnable3 =
         () -> {
@@ -61,7 +61,7 @@ public class Main {
           for (int i = 50; i < 550; i += 50) {
             MyClassifier classifier = null;
             try {
-              classifier = new MySVM(train, validation, attack, t, i, "NGram/0/output.csv");
+              classifier = new MySVM(train, validation, attack, t, i, "NGram/0/output333.csv");
               classifier.evaluate();
 
             } catch (Exception e) {
@@ -70,7 +70,7 @@ public class Main {
           }
           System.out.println("Thread Finished");
         };
-    new Thread(runnable1).start();
+    new Thread(runnable3).start();
 
     Runnable runnable4 =
         () -> {
@@ -80,7 +80,7 @@ public class Main {
           for (int i = 50; i < 550; i += 50) {
             MyClassifier classifier = null;
             try {
-              classifier = new MyJ48(train, validation, attack, t, i, "NGram/0/output.csv");
+              classifier = new MyJ48(train, validation, attack, t, i, "NGram/0/output333.csv");
               classifier.evaluate();
 
             } catch (Exception e) {
@@ -89,6 +89,6 @@ public class Main {
           }
           System.out.println("Thread Finished");
         };
-    new Thread(runnable1).start();
+    new Thread(runnable4).start();
   }
 }

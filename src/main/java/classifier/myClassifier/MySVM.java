@@ -20,6 +20,6 @@ public class MySVM extends MyClassifier {
 
   @Override
   public void evaluate() throws Exception {
-    getResultClassifier("weka.classifiers.functionsSMO");
+    getResultClassifier("weka.classifiers.functions.SMO");
   }
 }
