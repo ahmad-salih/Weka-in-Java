@@ -150,12 +150,13 @@ public abstract class MyClassifier {
     Evaluation eval = new Evaluation(validationSet);
     eval.evaluateModel(classifier, validationSet);
 
-    double TP = eval.weightedTruePositiveRate();
-    double TN = eval.weightedTrueNegativeRate();
-    double FP = eval.weightedFalsePositiveRate();
-    double FN = eval.weightedFalseNegativeRate();
+    double TP = eval.truePositiveRate(1);
+    double TN = eval.truePositiveRate(0);
+    double FP = eval.falseNegativeRate(0);
+    double FN =  eval.falseNegativeRate(1);
 
-    current = (TP + TN) / 2;
+    //current = (TP + TN) / 2;
+    current = (2*TP)/(2*TP+FP+FN);
     return validationSet;
   }
 
@@ -197,10 +198,10 @@ public abstract class MyClassifier {
   private void prepareEvaluateModelOutput(
       Evaluation eval, StringBuilder stringBuilder, String name) {
 
-    double TP = eval.weightedTruePositiveRate();
-    double TN = eval.weightedTrueNegativeRate();
-    double FP = eval.weightedFalsePositiveRate();
-    double FN = eval.weightedFalseNegativeRate();
+    double TP = eval.truePositiveRate(1);
+    double TN = eval.truePositiveRate(0);
+    double FP = eval.falseNegativeRate(0);
+    double FN =  eval.falseNegativeRate(1);
 
     stringBuilder
         .append(name)
@@ -217,11 +218,11 @@ public abstract class MyClassifier {
         .append(',')
         .append(FN)
         .append(',')
-        .append(eval.weightedPrecision())
+        .append(TP/(TP+FP))
         .append(',')
-        .append(eval.weightedRecall())
+        .append(TP)
         .append(',')
-        .append(eval.weightedFMeasure())
+        .append((2*TP)/(2*TP+FP+FN))
         .append(',')
         .append((TP + TN) / (TP + TN + FP + FN))
         .append('\n');
