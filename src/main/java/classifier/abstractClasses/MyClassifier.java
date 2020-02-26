@@ -43,7 +43,7 @@ public abstract class MyClassifier {
       writer = new BufferedWriter(new FileWriter(output));
 
       writer.write(
-          "Algorithm, Attacks in Train, TP, FP, TN, FN, Precision, Recall, F-Measure, Accuracy\n");
+          "Algorithm,Attacks in Train,Validation number,TP,FP,TN,FN,Precision,Recall,F-Measure,Accuracy\n");
       writer.flush();
     }
 
@@ -153,10 +153,10 @@ public abstract class MyClassifier {
     double TP = eval.truePositiveRate(1);
     double TN = eval.truePositiveRate(0);
     double FP = eval.falseNegativeRate(0);
-    double FN =  eval.falseNegativeRate(1);
+    double FN = eval.falseNegativeRate(1);
 
-    //current = (TP + TN) / 2;
-    current = (2*TP)/(2*TP+FP+FN);
+    current = (TP + TN) / 2;
+    //current = (2 * TP) / (2 * TP + FP + FN);
     return validationSet;
   }
 
@@ -201,7 +201,7 @@ public abstract class MyClassifier {
     double TP = eval.truePositiveRate(1);
     double TN = eval.truePositiveRate(0);
     double FP = eval.falseNegativeRate(0);
-    double FN =  eval.falseNegativeRate(1);
+    double FN = eval.falseNegativeRate(1);
 
     stringBuilder
         .append(name)
@@ -218,11 +218,11 @@ public abstract class MyClassifier {
         .append(',')
         .append(FN)
         .append(',')
-        .append(TP/(TP+FP))
+        .append(TP / (TP + FP))
         .append(',')
         .append(TP)
         .append(',')
-        .append((2*TP)/(2*TP+FP+FN))
+        .append((2 * TP) / (2 * TP + FP + FN))
         .append(',')
         .append((TP + TN) / (TP + TN + FP + FN))
         .append('\n');
