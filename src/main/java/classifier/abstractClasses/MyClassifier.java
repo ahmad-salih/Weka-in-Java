@@ -152,8 +152,9 @@ public abstract class MyClassifier {
 
     double TP = eval.truePositiveRate(1);
     double TN = eval.truePositiveRate(0);
-    double FP = eval.falseNegativeRate(0);
-    double FN = eval.falseNegativeRate(1);
+    double FP = eval.falsePositiveRate(1);
+    double FN = eval.falsePositiveRate(0);
+
 
     current = (TP + TN) / 2;
     //current = (2 * TP) / (2 * TP + FP + FN);
@@ -200,8 +201,8 @@ public abstract class MyClassifier {
 
     double TP = eval.truePositiveRate(1);
     double TN = eval.truePositiveRate(0);
-    double FP = eval.falseNegativeRate(0);
-    double FN = eval.falseNegativeRate(1);
+    double FP = eval.falsePositiveRate(1);
+    double FN = eval.falsePositiveRate(0);
 
     stringBuilder
         .append(name)
